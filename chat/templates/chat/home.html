@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chat Home</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #e5ddd5;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 360px;
+            height: 600px;
+            background: #ffffff;
+            border-radius: 10px;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+        h2, h3 {
+            margin: 10px 15px;
+            color: #075e54;
+        }
+        .user {
+            padding: 12px 15px;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .user:hover {
+            background: #f5f5f5;
+        }
+        .user a {
+            text-decoration: none;
+            color: #111;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+        .user a::before {
+            content: "👤";
+            margin-right: 10px;
+            font-size: 18px;
+        }
+        .logout {
+            margin-top: auto;
+            padding: 12px 15px;
+            text-align: center;
+            background: #f0f0f0;
+        }
+        .logout a {
+            color: #075e54;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .logout a:hover {
+            text-decoration: underline;
+        }
+        p {
+            margin: 15px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome, {{ request.user.username }}</h2>
+        <h3>Start Chatting With:</h3>
+        {% for user in users %}
+            <div class="user">
+                <a href="{% url 'chat_room' user.username %}">{{ user.username }}</a>
+            </div>
+        {% empty %}
+            <p>No other users available yet.</p>
+        {% endfor %}
+        <div class="logout">
+            <a href="{% url 'logout' %}">Logout</a>
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 360px;
+        }
+        .form-container h2 {
+            color: #1877f2;
+            font-size: 32px;
+            margin-bottom: 20px;
+            font-weight: bold;
+            text-align: center;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        input[type="text"],
+        input[type="password"],
+        input[type="email"],
+        input[type="number"],
+        select,
+        textarea {
+            padding: 14px 12px;
+            margin: 8px 0;
+            width: 100%;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            font-size: 16px;
+            text-align: left;
+        }
+        button {
+            padding: 14px;
+            margin: 12px 0;
+            width: 100%;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #166fe5;
+        }
+        .form-container p {
+            margin-top: 16px;
+            font-size: 14px;
+            color: #606770;
+            text-align: center;
+        }
+        .form-container a {
+            color: #1877f2;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+        /* Ensure Django form labels are left-aligned and clear */
+        .form-container label {
+            display: block;
+            text-align: left;
+            font-size: 14px;
+            color: #1c1e21;
+            margin-top: 10px;
+            margin-bottom: 4px;
+            font-weight: 500;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Account Login</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <p>Don't have an account? <a href="{% url 'signup' %}">Sign up</a></p>
+    </div>
+</body>
+</html>
