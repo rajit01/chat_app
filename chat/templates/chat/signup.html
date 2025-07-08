@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Signup</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', sans-serif;
+            background: #f0f2f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            width: 360px;
+            text-align: center;
+        }
+        .form-container h2 {
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #1877f2;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            padding: 12px;
+            margin: 8px 0;
+            width: 100%;
+            border: 1px solid #dddfe2;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        button {
+            padding: 12px;
+            margin: 12px 0;
+            width: 100%;
+            background: #1877f2;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        button:hover {
+            background: #166fe5;
+        }
+        p {
+            font-size: 14px;
+            color: #606770;
+        }
+        a {
+            color: #1877f2;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        form p {
+            margin: 10px 0;
+            text-align: left;
+        }
+        form label {
+            display: block;
+            font-size: 13px;
+            color: #1c1e21;
+            margin-bottom: 4px;
+        }
+        .password-instructions {
+            text-align: left;
+            font-size: 14px;
+            color: #606770;
+            background: #f0f2f5;
+            padding: 12px 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+        }
+        .password-instructions ul {
+            margin: 8px 0 0 20px;
+            padding: 0;
+        }
+        .password-instructions li {
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Account Signup</h2>
+
+        <!-- <div class="password-instructions">
+            <strong>Password Requirements:</strong>
+            <ul>
+                <li>Must contain <strong>at least 8 characters</strong>.</li>
+                <li>Cannot be entirely numeric.</li>
+                <li>Cannot be too similar to your other personal information.</li>
+                <li>Cannot be a commonly used password.</li>
+            </ul>
+        </div> -->
+
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Signup</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</body>
+</html>
