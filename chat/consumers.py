@@ -6,7 +6,6 @@ from .models import Message
 
 class ChatConsumer(AsyncWebsocketConsumer):
     async def connect(self):
-        print('111111111111111111111111111')
         self.receiver_username = self.scope['url_route']['kwargs']['username']
         self.sender = self.scope["user"]
 
@@ -37,7 +36,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
         sender_username = self.sender.username
         receiver_username = self.receiver_username
 
-        print(f"Message received: {message} from {sender_username} to {receiver_username}")
+        # print(f"Message received: {message} from {sender_username} to {receiver_username}")
 
         # Save message to DB
         await self.save_message(sender_username, receiver_username, message)
